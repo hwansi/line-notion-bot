@@ -59,7 +59,6 @@ def line_webhook():
             lines = [line.strip() for line in text.split("\n") if line.strip()]
             for line in lines:
                 if not line: continue
-                # 예: 다이소 평택서정 -2000
                 try:
                     desc, amount = line.rsplit(" ", 1)
                     입출금 = "출금" if "-" in amount else "입금"
@@ -82,3 +81,6 @@ def line_webhook():
                     print("❌ OCR 파싱 실패:", line, "| 에러:", e)
 
     return "OK", 200
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
