@@ -84,3 +84,22 @@ def line_webhook():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
+@app.route("/line_webhook", methods=["POST"])
+def line_webhook():
+    payload = request.get_json()
+    events = payload.get("events", [])
+
+    for event in events:
+        # 이미지 메시지 처리
+        if event.get("type") == "message" and event["message"]["type"] == "image":
+            ...
+            # 기존 OCR 처리 코드
+
+        # 텍스트 메시지 처리
+        elif event.get("type") == "message" and event["message"]["type"] == "text":
+            ...
+            # 위에 추가한 텍스트 파싱 코드
+
+    return "OK", 200
+
